@@ -9,6 +9,10 @@ namespace Exercise
 {
     internal class Program
     {
+        /// <summary>
+        /// Задание
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             string s = Console.ReadLine();
