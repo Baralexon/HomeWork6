@@ -10,7 +10,7 @@ namespace Exercise
     internal class Program
     {
         /// <summary>
-        /// Задание
+        /// Задание: справочник «Сотрудники»
         /// </summary>
         /// <param name="args"></param>
         static void Main(string[] args)
