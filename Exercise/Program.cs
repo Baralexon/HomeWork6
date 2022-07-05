@@ -41,7 +41,13 @@ namespace Exercise
                 count++;
                 string[] lines = TEXT.Split('#');
                
-                Console.Write($"{lines}");
+                for (int i =0; i<= lines.Length - 1; i++)
+                {
+                    Console.Write($"{lines[i]} ");
+                }
+
+
+               
 
             } while (Console.ReadKey(true).Key == ConsoleKey.Escape);
             
