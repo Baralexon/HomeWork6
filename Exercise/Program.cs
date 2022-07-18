@@ -15,22 +15,30 @@ namespace Exercise
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            Console.WriteLine("Если хотите посмотреть список сотрудников нажмите - 1\nЕсли хотите заполнить список сотрудников нажмите - 2");
-            string N = Console.ReadLine();// выбор номера метода
-            switch (N)
+            if (File.Exists(@"c:\Users\Александр\source\repos\HomeWork6\employees.txt") == true) // проверка существования файла "employees.txt"
             {
-            case "1": ShowList();
-                break;
-            case "2": FillList();
-                break;
-                default:
-                    Console.WriteLine("Введено неверно");
-                    break;
+                Console.WriteLine("Если хотите посмотреть список сотрудников нажмите - 1\nЕсли хотите заполнить список сотрудников нажмите - 2");
+                string N = Console.ReadLine();// выбор номера метода: 1 - открыть список, 2 - заполнить
+                switch (N)
+                {
+                    case "1":
+                        ShowList();
+                        break;
+                    case "2":
+                        FillList();
+                        break;
+                    default:
+                        Console.WriteLine("Введено неверно!");
+                        break;
+                }
             }
-            //Console.WriteLine("Hi, I am here!");
-            //DateTime date = new DateTime(2022, 06, 20);
-            //Console.WriteLine((DateTime.Now.Subtract(date).TotalDays));
-            //Console.WriteLine(Math.Abs(-25));
+            else
+            {
+                Console.WriteLine("Похоже, что справочник «Сотрудники» еще не существует и сейчас он будет создан");
+                Console.ReadKey();
+                FillList();
+            }
+                        
             Console.ReadKey();
         }
 
@@ -44,7 +52,6 @@ namespace Exercise
             string[] lines = text.Split('#');
                         
             foreach (string line in lines)  Console.Write($"{line} ");
-            
         }
 
         /// <summary>
@@ -54,18 +61,15 @@ namespace Exercise
         /// <returns></returns>
         static void FillList()
         {
-            int count = 1;
-
-            do
-            {
-                //string note = string.Empty;
+                Console.Write("Введите ID сотрудника: ");
+                string ID = Console.ReadLine();
                 Console.Write("Введите Ф.И.О. сотрудника: ");
                 string Name = Console.ReadLine();
                 Console.Write("Введите возраст сотрудника: ");
                 string age = Console.ReadLine();
                 Console.Write("Введите рост сотрудника (в см): ");
                 string height = Console.ReadLine();
-                Console.Write("Введите год рождения сотрудника (в см): ");
+                Console.Write("Введите год рождения сотрудника: ");
                 int year = Convert.ToInt32(Console.ReadLine());
                 Console.Write("Введите месяц рождения сотрудника: ");
                 int month = Convert.ToInt32(Console.ReadLine());
@@ -75,13 +79,9 @@ namespace Exercise
                 Console.Write("Введите место рождения сотрудника: ");
                 string birthplace = Console.ReadLine();
 
-                string TEXT = $"{count}#{DateTime.Now}#{Name}#{age}#{height}#{birthday.ToShortDateString()}#{birthplace}";
-                File.AppendAllText(@"c:\Users\Александр\source\repos\HomeWork6\employees.txt", TEXT);
-                count++;
-
-            } while (Console.ReadKey(true).Key == ConsoleKey.Escape);
-             
-            
+                string TEXT = $"{ID}#{DateTime.Now}#{Name}#{age}#{height}#{birthday.ToShortDateString()}#{birthplace}";
+                File.AppendAllText(@"c:\Users\Александр\source\repos\HomeWork6\employees.txt", TEXT + "\n"); //
+                Console.WriteLine();
         }
     
     }
